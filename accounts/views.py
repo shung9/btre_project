@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 from contacts.models import Contact
 
 def register(request):
+  #block access to register page for the user authenticated
+  # if request.user.is_authenticated:
+     # return redirect('dashboard')
   if request.method == 'POST':
     # Get form values
     first_name = request.POST['first_name']
@@ -43,7 +46,10 @@ def login(request):
   if request.method == 'POST':
     username = request.POST['username']
     password = request.POST['password']
-
+    ## vérification username or password is not empty, continue logique 
+    # if usernam or password:
+    ## vérification username exists, continue logique code
+    # if User.objects.filter(username=username).exists():
     user = auth.authenticate(username=username, password=password)
 
     if user is not None:
